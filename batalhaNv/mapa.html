@@ -3,45 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="game .js" defer></script>
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
   </head>
   <body>
-    <script>
-      const board = () => {
-        const quadros = Array.from({ length: 5 }, () => Array(5).fill(0));
+   <h1>Tabuleiro Mapa</h1>
+    <div class="tabu">
 
-        const embarcacoes = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1];
-        const vh = [];
-        const pont = [];
-        const colocarBarco = ([barco, ...resto]) => {
-          if (!barco) return;
-
-          console.log(
-            `Colocando embarcação de tamanho ${barco} qual posicao tu quer colocala?`
-          );
-          vh.push(
-            prompt(
-              `embarcação de tamanho ${barco}  digite V =vertical H= horizontal`
-            )
-          );
-          pont.push(
-            prompt(
-              `embarcação de tamanho ${barco} coloque a cordenada X,y de uma matriz [5,5]`
-            )
-          );
-
-          // Aqui você poderia alterar o "quadros" futuramente
-          return colocarBarco(resto);
-        };
-
-        colocarBarco(embarcacoes);
-        const r = pont.map((index) => index);
-        console.log(r);
-
-        return { quadros, vh, pont };
-      };
-      console.log(board().vh);
-      //   console.log(board());
-    </script>
+    </div>
   </body>
 </html>
