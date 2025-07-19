@@ -1,63 +1,73 @@
-const tabu = document.querySelector(".tabu");
+// const tabu = document.querySelector(".tabu");
 
-for(let i = 0 ; i < 100; i++){
+// for (let i = 0; i < 10; i++) {
+//     for (let j = 0; j < 10; j++) {
+//         const indice = document.createElement("div");
 
-    const indice = document.createElement("div");
-    indice.classList.add("ponto");
-    indice.id = i;
-    tabu.append(indice)
-}
+//         indice.classList.add("ponto");
 
-tabu.addEventListener("click",(event)=>{
-    const click=event.target
-    if(click.classList.contains("ponto")){
-        click.style.background ="red"
-    }
-    console.log(event.target)
-})
+//         indice.dataset.matrs = [i, j];
+//         //   indice.dataset.j = j;
 
+//         indice.textContent = `[${i},${j}]`;
 
-// const board = () => {
-//     const quadros = Array.from({ length: 5 }, () => Array(5).fill(0));
-//     const embarcacoes = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1];
-//     const vh = [];
-//     const pont = [];
+//         tabu.append(indice);
+//     }
+// }
+// tabu.addEventListener("click", (event) => {
+//     const click = event.target
+//     if (click.classList.contains("ponto")) {
+//         click.style.background = "red"
+//         board(click.dataset.matrs)
+//     }
+//     console.log(event.target)
+// })
 
-//     const colocarBarco = ([barco, ...resto]) => {
-//         if (!barco) return;
+const board = (pnt) => {
+    const quadros = Array.from({ length: 10 }, () => Array(10).fill(0));
+    const embarcacoes = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1];
+    const vh = [];
+    const pont = [];
 
-//         vh.push(prompt(`Embarcação de tamanho ${barco}: V (vertical) ou H (horizontal)?`));
-//         pont.push(prompt(`Coordenadas X,Y para embarcação de tamanho ${barco}`));
+    const colocarBarco = ([barco, ...resto]) => {
+        if (!barco) return;
 
-//         return colocarBarco(resto);
-//     };
+        // vh.push(prompt(`Embarcação de tamanho ${barco}: V (vertical) ou H (horizontal)?`));
+        pont.push([init],[fim]);
 
-//     const add = () => {
-//         vh.forEach((orientacao, i) => {
-//             const [x, y] = pont[i].split(",").map(Number);
-//             const tamanho = embarcacoes[i];
+        return colocarBarco(resto);
+    };
 
-//             if (orientacao.toLowerCase() === "v") {
-//                 for (let j = 0; j < tamanho; j++) {
-//                     if (x + j < 5) {
-//                         quadros[x + j][y] = tamanho;
-//                     }
-//                 }
-//             } else if (orientacao.toLowerCase() === "h") {
-//                 for (let j = 0; j < tamanho; j++) {
-//                     if (y + j < 5) {
-//                         quadros[x][y + j] = tamanho;
-//                     }
-//                 }
-//             }
-//         });
-//     };
+    const add = () => {
+        vh.forEach((orientacao, i) => {
+            const [x, y] = pont[i].split(",").map(Number);
+            const tamanho = embarcacoes[i];
 
-//     colocarBarco(embarcacoes);
-//     add();
+            if (orientacao.toLowerCase() === "v") {
+                for (let j = 0; j < tamanho; j++) {
+                    if (x + j < 10) {
+                        quadros[x + j][y] = tamanho;
+                    }else{
+                        throw Error("nao e embarcaçao nao cabe")
+                    }
+                }
+            } else if (orientacao.toLowerCase() === "h") {
+                for (let j = 0; j < tamanho; j++) {
+                    if (y + j < 10) {
+                        quadros[x][y + j] = tamanho;
+                    }else{
+                        throw Error("nao e embarcaçao nao cabe")
+                    }
+                }
+            }
+        });
+    };
 
-//     return { quadros, vh, pont };
-// };
+    colocarBarco(embarcacoes);
+    add();
 
-// const resultado = board();
-// console.table(resultado.quadros);
+    return { quadros, vh, pont };
+};
+
+const resultado = board();
+console.table(resultado.quadros);
