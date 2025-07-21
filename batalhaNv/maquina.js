@@ -1,9 +1,9 @@
 
 function quadros() {
-    return Array.from({ length: 5 }, () => Array(5).fill(0));
+    return Array.from({ length: 10 }, () => Array(10).fill(0));
 }
 
-function addShips(tabuleiro, embarcacoes, x, y, p) {
+export default function addShips(tabuleiro, embarcacoes, x, y, p) {
     if (embarcacoes.length === 0) return;
 
     const tamanho = embarcacoes.shift();
@@ -23,7 +23,7 @@ function addShips(tabuleiro, embarcacoes, x, y, p) {
     } else if (p.toLowerCase() === "h") {
         if (y + tamanho <= tabuleiro.length) {
             for (let i = 0; i < tamanho; i++) {
-                if (tabuleiro[x][y+i] !== 0) {
+                if (tabuleiro[x][y + i] !== 0) {
                     console.log("este ponto nao pode ser ocupado")
                     console.log(`tamanho da embarcacao ${tamanho} coodenadas x[${x}]y[${y}]`)
                     return;

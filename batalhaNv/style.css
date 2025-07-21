@@ -3,6 +3,10 @@
     padding: 0;
     margin: 0;
 }
+.corp{
+    display: flex;
+    justify-content: space-evenly;
+}
 .tabu{
     display:grid;
     grid-template-columns: repeat(10,minmax(20px,1fr));
@@ -12,4 +16,20 @@
 }
 .ponto{
     border:1px solid black;
+}
+
+.ships{
+    border:1px solid black;
+    height: 300px;
+    width: 300px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.shipsF{
+    border:1px solid black;
+    width: 20px;
+    height: 25px;
+}
+.shipsF:first-child{
+    background-color: red;
 }
