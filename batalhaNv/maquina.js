@@ -1,33 +1,23 @@
-
 function quadros() {
     return Array.from({ length: 10 }, () => Array(10).fill(0));
 }
 
-export default function addShips(tabuleiro, embarcacoes, x, y, p) {
-    if (embarcacoes.length === 0) return;
-
-    const tamanho = embarcacoes.shift();
+export default function addShips(tabuleiro, tamanho, x, y, p) {
+    if (!tamanho) return;
 
     if (p.toLowerCase() === "v") {
         if (x + tamanho <= tabuleiro.length) {
             for (let i = 0; i < tamanho; i++) {
-                if (tabuleiro[x + i][y] !== 0) {
-                    console.log("este ponto nao pode ser ocupado")
-                    console.log(`tamanho da embarcacao ${tamanho} coodenadas x[${x}]y[${y}]`)
-                    return;
-                }
-            } for (let i = 0; i < tamanho; i++) {
+                if (tabuleiro[x + i][y] !== 0) return;
+            }
+            for (let i = 0; i < tamanho; i++) {
                 tabuleiro[x + i][y] = tamanho;
             }
         }
     } else if (p.toLowerCase() === "h") {
         if (y + tamanho <= tabuleiro.length) {
             for (let i = 0; i < tamanho; i++) {
-                if (tabuleiro[x][y + i] !== 0) {
-                    console.log("este ponto nao pode ser ocupado")
-                    console.log(`tamanho da embarcacao ${tamanho} coodenadas x[${x}]y[${y}]`)
-                    return;
-                }
+                if (tabuleiro[x][y + i] !== 0) return;
             }
             for (let i = 0; i < tamanho; i++) {
                 tabuleiro[x][y + i] = tamanho;
@@ -36,27 +26,43 @@ export default function addShips(tabuleiro, embarcacoes, x, y, p) {
     }
 }
 
+function addAutomatic(tabuleiro, embarcacoes) {
+    for (let i = 0; i < embarcacoes.length; i++) {
+        let colocado = false;
+        let tentativas = 0;
 
-// 🧑 Player 1
+        while (!colocado && tentativas < 100) {
+            const x = Math.floor(Math.random() * 10);
+            const y = Math.floor(Math.random() * 10);
+            const orientacao = Math.random() < 0.5 ? "v" : "h";
+
+            // Tenta copiar tabuleiro antes e depois para testar se foi colocado
+            const clone = JSON.stringify(tabuleiro);
+
+            addShips(tabuleiro, embarcacoes[i], x, y, orientacao);
+
+            if (JSON.stringify(tabuleiro) !== clone) {
+                colocado = true;
+            }
+
+            tentativas++;
+        }
+    }
+}
+
 const player1 = {
     tabuleiro: quadros(),
     navios: [4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
 };
 
-// 🤖 Player 2 (ex: máquina)
 const player2 = {
     tabuleiro: quadros(),
     navios: [4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
 };
 
-// Posiciona os navios
-addShips(player1.tabuleiro, player1.navios, 0, 0, "v");
-addShips(player1.tabuleiro, player1.navios, 0, 2, "h");
+addAutomatic(player1.tabuleiro, [...player1.navios]); 
+addAutomatic(player2.tabuleiro, [...player2.navios]);
 
-addShips(player2.tabuleiro, player2.navios, 1, 1, "v");
-addShips(player2.tabuleiro, player2.navios, 3, 0, "h");
-
-// Resultado
 console.log("Player 1:");
 console.table(player1.tabuleiro);
 
