@@ -1,8 +1,8 @@
-function quadros() {
+export function quadros() {
     return Array.from({ length: 10 }, () => Array(10).fill(0));
 }
 
-export default function addShips(tabuleiro, tamanho, x, y, p) {
+function addShips(tabuleiro, tamanho, x, y, p) {
     if (!tamanho) return;
 
     if (p.toLowerCase() === "v") {
@@ -26,7 +26,7 @@ export default function addShips(tabuleiro, tamanho, x, y, p) {
     }
 }
 
-function addAutomatic(tabuleiro, embarcacoes) {
+export  function addAutomatic(tabuleiro, embarcacoes) {
     for (let i = 0; i < embarcacoes.length; i++) {
         let colocado = false;
         let tentativas = 0;

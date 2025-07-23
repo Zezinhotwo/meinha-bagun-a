@@ -18,18 +18,3 @@
     border:1px solid black;
 }
 
-.ships{
-    border:1px solid black;
-    height: 300px;
-    width: 300px;
-    display: flex;
-    justify-content: space-evenly;
-}
-.shipsF{
-    border:1px solid black;
-    width: 20px;
-    height: 25px;
-}
-.shipsF:first-child{
-    background-color: red;
-}
