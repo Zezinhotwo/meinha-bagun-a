@@ -8,13 +8,25 @@
     justify-content: space-evenly;
 }
 .tabu{
-    display:grid;
-    grid-template-columns: repeat(10,minmax(20px,1fr));
-    width: 300px;
-    border:1px solid black;
-    height: 300px;
+    display:flex;
+    justify-content: space-evenly;
+    width: 100%;
 }
 .ponto{
     border:1px solid black;
+    font-size: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* height:20px; */
 }
 
+.quadro{    
+    display:grid;
+    grid-template-columns: repeat(10,minmax(10px,1fr));
+    width: 30dvw;
+    height: 50dvh;
+    border:1px solid black;
+
+}
