@@ -1,8 +1,9 @@
 import DomControle from "./controleDOM.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector("#startGame").addEventListener("click", () => {
-            new DomControle().init();
+    document.querySelector("#restartGame").addEventListener("click", () => {
+        new DomControle().restart()
     });
-
+    new DomControle().init();
+    new DomControle().DOM_bomb();
 })

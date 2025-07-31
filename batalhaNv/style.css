@@ -1,19 +1,22 @@
-*{
+* {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
-.corp{
+
+.corp {
     display: flex;
     justify-content: space-evenly;
 }
-.tabu{
-    display:flex;
+
+.tabu {
+    display: flex;
     justify-content: space-evenly;
     width: 100%;
 }
-.ponto{
-    border:1px solid black;
+
+.ponto {
+    border: 1px solid black;
     font-size: 5px;
     display: flex;
     align-items: center;
@@ -22,11 +25,24 @@
     /* height:20px; */
 }
 
-.quadro{    
-    display:grid;
-    grid-template-columns: repeat(10,minmax(10px,1fr));
+.quadro {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(10px, 1fr));
     width: 30dvw;
     height: 50dvh;
-    border:1px solid black;
+    border: 1px solid black;
 
+}
+
+.opGame {
+    position:fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 40%;
+    left: 40%;
+    background-color: rgba(255, 0, 0, 0.423);
+    height: 30dvh;
+    width: 20dvw;
+    display: none;
 }

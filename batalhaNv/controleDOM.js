@@ -6,35 +6,12 @@ export default class DomControle {
     cosntructor() {
         this.init();
     }
+
     init() {
         this.put_ship();
     }
 
-    DOMaddBorad(name, player) {
-        const tabu = document.querySelector(".tabu");
-        const board = document.createElement("div");
-        const nickname = document.createElement("div");
-        nickname.innerText = name;
-        board.classList.add("quadro")
-        for (let i = 0; i < 10; i++) {
-            for (let j = 0; j < 10; j++) {
-                const div = document.createElement("div");
-                div.classList.add("ponto")
-                if (player[i][j] !== 0 && name !== "computer") {
-                    // div.innerText = player[i][j];
-                    div.style.background = "red"
-                    // div.dataset.point = player[i][j];
-                }
-                board.append(div);
-            }
-        }
-        tabu.append(nickname)
-        tabu.append(board)
-    }
-
     put_ship() {
-
-
         const player1 = {
             name: "player",
             tabuleiro: quadros(),
@@ -50,9 +27,56 @@ export default class DomControle {
         new addAutomatic(player1.tabuleiro, [...player1.navios]);
         new addAutomatic(player2.tabuleiro, [...player2.navios]);
 
-        this.DOMaddBorad(player1.name, [...player1.tabuleiro]);
-        this.DOMaddBorad(player2.name, [...player2.tabuleiro]);
+        this.DOM_addBorad(player1.name, [...player1.tabuleiro]);
+        this.DOM_addBorad(player2.name, [...player2.tabuleiro]);
 
+    }
+
+    restart() {
+        const tabu = document.querySelector(".tabu");
+        tabu.innerText = ""
+        this.put_ship()
+    }
+    DOM_bomb() {
+        document.querySelector(".macquina")
+            .addEventListener("click", (event) => {
+                const target = event.target;
+
+                if (target.classList.contains("ponto")) {
+                    target.style.background = "black"
+                    if (target.classList.contains("ship")) {
+                            target.style.background = "orange"
+                    }
+                }
+            });
+
+    }
+
+    DOM_addBorad(name, player) {
+        const tabu = document.querySelector(".tabu");
+        const board = document.createElement("div");
+        const nickname = document.createElement("div");
+        nickname.innerText = name;
+        board.classList.add("quadro");
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 10; j++) {
+                const div = document.createElement("div");
+                div.classList.add("ponto");
+                if (player[i][j] !== 0 && name !== "computer") {
+                    // div.innerText = player[i][j];
+                    div.style.background = "red";
+                    // div.dataset.point = player[i][j];
+                }
+                if (player[i][j] !== 0 && name === "computer") [
+                    div.classList.add("ship")
+                    ,
+                    board.classList.add("macquina") // to add bomb event
+                ]
+                board.append(div);
+            }
+        }
+        tabu.append(nickname)
+        tabu.append(board)
     }
 
 }
