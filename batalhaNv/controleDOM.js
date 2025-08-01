@@ -38,16 +38,22 @@ export default class DomControle {
         this.put_ship()
     }
     DOM_bomb() {
+        let point = 0;
         document.querySelector(".macquina")
             .addEventListener("click", (event) => {
                 const target = event.target;
-
+                if (point == 20) {
+                    alert("VOCE GANHOU !")
+                    this.restart()
+                }
                 if (target.classList.contains("ponto")) {
                     target.style.background = "black"
                     if (target.classList.contains("ship")) {
-                            target.style.background = "orange"
+                        target.style.background = "orange"
+                        point += 1
                     }
                 }
+
             });
 
     }
@@ -65,6 +71,7 @@ export default class DomControle {
                 if (player[i][j] !== 0 && name !== "computer") {
                     // div.innerText = player[i][j];
                     div.style.background = "red";
+                    board.classList.add("player")
                     // div.dataset.point = player[i][j];
                 }
                 if (player[i][j] !== 0 && name === "computer") [
